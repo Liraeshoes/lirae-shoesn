@@ -620,10 +620,10 @@
 </head>
 <body>
   <header>
-    <a href="#home" class="logo" id="home-link-logo">
+    <div class="logo" id="home-logo">
       <img src="LOGO 2 PNG - OFF WHITE - TRANSPARENTE.png" alt="Logo Lirae">
       <span>Lirae Shoes</span>
-    </a>
+    </div>
     <nav>
       <a href="#home" id="home-link-nav">Início</a>
       <a href="#collections" id="collections-link">Coleções</a>
@@ -1140,11 +1140,10 @@
     // Referências aos links de navegação do cabeçalho
     const collectionsLink = document.getElementById('collections-link');
     const homeLinkNav = document.getElementById('home-link-nav');
-    const homeLinkLogo = document.getElementById('home-link-logo');
+    // Removido a referência ao link do logo do JavaScript
+    // const homeLinkLogo = document.getElementById('home-link-logo');
     const historyLink = document.getElementById('history-link');
     const contactLink = document.getElementById('contact-link');
-    // Removido a referência ao link de cadastro do JavaScript
-    // const registerLink = document.getElementById('register-link');
     const loginLink = document.getElementById('login-link');
 
     // Referências aos links de navegação entre as telas de autenticação
@@ -1190,11 +1189,12 @@
       console.log('Clicado em "Início" na navegação.');
       showSection(mainProductPage);
     });
-    homeLinkLogo.addEventListener('click', function(event) {
-      event.preventDefault();
-      console.log('Clicado no Logo.');
-      showSection(mainProductPage);
-    });
+    // Removido o event listener para o logo, pois não é mais um link
+    // homeLinkLogo.addEventListener('click', function(event) {
+    //   event.preventDefault();
+    //   console.log('Clicado no Logo.');
+    //   showSection(mainProductPage);
+    // });
 
     historyLink.addEventListener('click', function(event) {
       event.preventDefault();
@@ -1207,13 +1207,6 @@
       console.log('Clicado em "Contato".');
       showSection(contactPage);
     });
-
-    // Removido o event listener para o link de cadastro do menu
-    // registerLink.addEventListener('click', function(event) {
-    //   event.preventDefault();
-    //   console.log('Clicado em "Cadastro".');
-    //   showSection(registrationPage);
-    // });
 
     loginLink.addEventListener('click', function(event) {
       event.preventDefault();
@@ -1358,9 +1351,9 @@
     });
 
 
-    // Ao carregar a página, garante que a página de login esteja visível por padrão
+    // Ao carregar a página, garante que a página inicial do produto esteja visível por padrão
     document.addEventListener('DOMContentLoaded', () => {
-      showSection(loginPage);
+      showSection(mainProductPage); // Alterado para mostrar a página principal
     });
   </script>
 </body>
