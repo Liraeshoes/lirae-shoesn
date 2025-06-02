@@ -24,15 +24,26 @@
       color: #F1EFE7; /* Cor do texto do cabeçalho */
       padding: 20px 20px;
       display: flex;
-      justify-content: space-between; /* Espaço entre logo e navegação */
-      align-items: center; /* Alinha itens verticalmente */
-      flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+      flex-direction: column; /* Changed to column to stack rows */
+      align-items: center; /* Center items horizontally */
+      flex-wrap: wrap;
     }
+
+    .header-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between; /* Space between logo and actions */
+      align-items: center;
+      margin-bottom: 15px; /* Space between top and bottom header parts */
+      flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    }
+
     /* Estilos para o contêiner do logo */
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px; /* Espaçamento entre a imagem e o texto do logo */
+      gap: 10px;
+      /* Removido flex-grow e justify-content para que o logo volte para o canto */
     }
     /* Estilos para a imagem do logo */
     .logo img {
@@ -49,6 +60,70 @@
       text-decoration: none; /* Remove o sublinhado padrão dos links */
       color: inherit; /* Herda a cor do elemento pai (do .logo) */
     }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px; /* Space between search and shopping bag */
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      border-radius: 20px;
+      background-color: #F1EFE7;
+      overflow: hidden; /* Ensures rounded corners for children */
+    }
+
+    .search-bar input {
+      border: none;
+      padding: 8px 15px;
+      font-size: 14px;
+      background-color: transparent;
+      color: #000;
+      outline: none; /* Remove outline on focus */
+      width: 180px; /* Adjust as needed */
+    }
+
+    .search-bar button {
+      background-color: #000;
+      color: #F1EFE7;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 0 20px 20px 0; /* Rounded only on the right */
+      transition: background-color 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background-color: #333;
+    }
+
+    .shopping-bag {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #F1EFE7;
+      font-weight: bold;
+    }
+
+    .shopping-bag #cart-item-count {
+      background-color: #000;
+      color: #F1EFE7;
+      border-radius: 50%;
+      padding: 2px 8px;
+      font-size: 14px;
+      min-width: 24px; /* Ensure it's always a circle */
+      text-align: center;
+    }
+
+    .header-bottom {
+      width: 100%;
+      text-align: center; /* Center navigation links */
+    }
+
     /* Estilos para os links de navegação */
     nav a {
       color: #F1EFE7; /* Cor dos links de navegação */
@@ -616,21 +691,168 @@
     .auth-link:hover {
       color: #000; /* Cor do texto do link no hover */
     }
+
+    /* Media query for smaller screens to adjust header layout */
+    @media(max-width: 767px) {
+      .header-top {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .logo {
+        margin-bottom: 10px; /* Space between logo and search on small screens */
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: center; /* Center search and bag */
+      }
+      .search-bar {
+        width: 100%; /* Full width for search bar */
+        max-width: 300px; /* Limit max width */
+      }
+      .search-bar input {
+        flex-grow: 1; /* Allow input to grow */
+      }
+    }
+
+    /* Estilos para o contêiner da página de Master Login */
+    .master-login-container {
+      background-color: #BC9D71;
+      color: #F1EFE7;
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    .master-login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #F1EFE7;
+      font-size: 28px;
+    }
+
+    .master-login-container .form-group {
+      margin-bottom: 20px;
+    }
+
+    .master-login-container .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .master-login-container .form-group input[type="text"],
+    .master-login-container .form-group input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #F1EFE7;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #F1EFE7;
+      color: #000;
+    }
+
+    .master-login-container button[type="submit"] {
+      background-color: #000;
+      color: #F1EFE7;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .master-login-container button[type="submit"]:hover {
+      background-color: #333;
+    }
+
+    .master-login-container .form-message {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Estilos para o contêiner da página de Admin Panel */
+    .admin-panel-container {
+      background-color: #F1EFE7;
+      color: #000;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .admin-panel-container h2 {
+      margin-bottom: 30px;
+      color: #BC9D71;
+      font-size: 28px;
+    }
+
+    .admin-panel-container .admin-options {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .admin-panel-container .admin-option-button {
+      background-color: #BC9D71;
+      color: #F1EFE7;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .admin-panel-container .admin-option-button:hover {
+      background-color: #a0815a;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo" id="home-logo">
-      <img src="LOGO 2 PNG - OFF WHITE - TRANSPARENTE.png" alt="Logo Lirae">
-      <span>Lirae Shoes</span>
+    <div class="header-top">
+      <div class="logo" id="home-logo">
+        <img src="LOGO 2 PNG - OFF WHITE - TRANSPARENTE.png" alt="Logo Lirae">
+        <span>Lirae Shoes</span>
+      </div>
+      <div class="header-actions">
+        <div class="search-bar">
+          <input type="search" id="search-input" placeholder="Pesquisar produtos...">
+          <button id="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F1EFE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="shopping-bag">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F1EFE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span id="cart-item-count">0</span>
+        </div>
+      </div>
     </div>
-    <nav>
+    <nav class="header-bottom">
       <a href="#home" id="home-link-nav">Início</a>
       <a href="#collections" id="collections-link">Coleções</a>
       <a href="#history" id="history-link">História</a>
       <a href="#contact" id="contact-link">Contato</a>
       <a href="#login" id="login-link">Login</a>
-    </nav>
+      </nav>
   </header>
 
   <section class="product-container" id="main-product-page">
@@ -1073,26 +1295,48 @@
       <button type="submit">Entrar</button>
       <div id="login-message" class="form-message"></div>
     </form>
-    <a href="#register" class="auth-link" id="link-to-register">Não tem uma conta? Cadastre-se</a> </section>
+    <a href="#register" class="auth-link" id="link-to-register">Não tem uma conta? Cadastre-se</a>
+    <a href="#" class="auth-link" id="toggle-master-login-link">Acesso Administrativo</a>
+  </section>
+
+  <section class="master-login-container hidden" id="master-login-page">
+    <h2>Login Master</h2>
+    <form id="master-login-form">
+      <div class="form-group">
+        <label for="master-username">Usuário:</label>
+        <input type="text" id="master-username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="master-password">Senha:</label>
+        <input type="password" id="master-password" name="password" required>
+      </div>
+      <button type="submit">Entrar como Master</button>
+      <div id="master-login-message" class="form-message"></div>
+    </form>
+  </section>
+
+  <section class="admin-panel-container hidden" id="admin-panel-page">
+    <h2>Painel de Administração</h2>
+    <div class="admin-options">
+      <button class="admin-option-button" id="add-product-btn">Incluir Produtos</button>
+      <button class="admin-option-button" id="alter-price-btn">Alterar Valor</button>
+      <button class="admin-option-button" id="approve-users-btn">Aprovar Novos Usuários</button>
+    </div>
+    <div id="admin-action-message" class="form-message"></div>
+  </section>
 
   <section class="related-products">
     <h2>Você também pode gostar</h2>
     <div class="related-grid">
       <div class="related-item">
-        <img src="https://via.placeholder.com/200x200" alt="Produto 1">
-        <p>Sapato Clássico</p>
-        <p>R$ 299,00</p>
-      </div>
+        <img src="https://via.placeholder.com/200x200/BC9D71/F1EFE7?text=Produto+1" alt="Produto 1">
+        </div>
       <div class="related-item">
-        <img src="https://via.placeholder.com/200x200" alt="Produto 2">
-        <p>Sapato Casual</p>
-        <p>R$ 279,00</p>
-      </div>
+        <img src="https://via.placeholder.com/200x200/000/F1EFE7?text=Produto+2" alt="Produto 2">
+        </div>
       <div class="related-item">
-        <img src="https://via.placeholder.co/200x200" alt="Produto 3">
-        <p>Sapato Social</p>
-        <p>R$ 319,00</p>
-      </div>
+        <img src="https://via.placeholder.co/200x200/F1EFE7/BC9D71?text=Produto+3" alt="Produto 3">
+        </div>
     </div>
   </section>
 
@@ -1110,6 +1354,17 @@
   </div>
 
   <script>
+    // Global cart counter
+    let cartItemCount = 0;
+    const cartItemCountElement = document.getElementById('cart-item-count');
+
+    // Função para atualizar o display do carrinho
+    function updateCartDisplay() {
+      if (cartItemCountElement) {
+        cartItemCountElement.textContent = cartItemCount;
+      }
+    }
+
     // Função para adicionar ao carrinho
     function addToCart(productElement) {
       const productName = productElement.querySelector('h3').textContent;
@@ -1119,6 +1374,9 @@
       const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Não especificado';
 
       console.log(`Adicionado ao carrinho: ${productName}, Tamanho: ${selectedSize}, Cor: ${selectedColor}, Preço: ${productPrice}`);
+
+      cartItemCount++; // Incrementa o contador
+      updateCartDisplay(); // Atualiza o display
 
       const messageElement = productElement.querySelector('.cart-message-item');
       if (messageElement) {
@@ -1136,19 +1394,23 @@
     const contactPage = document.getElementById('contact-page');
     const registrationPage = document.getElementById('registration-page');
     const loginPage = document.getElementById('login-page');
+    const masterLoginPage = document.getElementById('master-login-page'); // Mantém a referência para a seção master login
+    const adminPanelPage = document.getElementById('admin-panel-page');
+
 
     // Referências aos links de navegação do cabeçalho
     const collectionsLink = document.getElementById('collections-link');
     const homeLinkNav = document.getElementById('home-link-nav');
-    // Removido a referência ao link do logo do JavaScript
-    // const homeLinkLogo = document.getElementById('home-link-logo');
     const historyLink = document.getElementById('history-link');
     const contactLink = document.getElementById('contact-link');
     const loginLink = document.getElementById('login-link');
+    // Removido masterLoginLink, pois não está mais no menu principal
+
 
     // Referências aos links de navegação entre as telas de autenticação
     const linkToLogin = document.getElementById('link-to-login');
     const linkToRegister = document.getElementById('link-to-register');
+    const toggleMasterLoginLink = document.getElementById('toggle-master-login-link'); // Novo link para alternar Master Login
 
     // Referência ao formulário de contato e à mensagem de feedback
     const contactForm = document.getElementById('contact-form');
@@ -1162,6 +1424,34 @@
     const loginForm = document.getElementById('login-form');
     const loginMessage = document.getElementById('login-message');
 
+    // Referência ao formulário de master login e à mensagem de feedback
+    const masterLoginForm = document.getElementById('master-login-form');
+    const masterLoginMessage = document.getElementById('master-login-message');
+
+    // Referências aos botões do painel de administração
+    const addProductBtn = document.getElementById('add-product-btn');
+    const alterPriceBtn = document.getElementById('alter-price-btn');
+    const approveUsersBtn = document.getElementById('approve-users-btn');
+    const adminActionMessage = document.getElementById('admin-action-message');
+
+
+    // Adiciona funcionalidade de pesquisa
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+
+    if (searchButton) {
+      searchButton.addEventListener('click', function() {
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm) {
+          console.log(`Pesquisando por: ${searchTerm}`);
+          // Aqui você normalmente filtraria produtos ou redirecionaria para uma página de resultados de pesquisa
+          // Por este exemplo, vamos apenas logar.
+        } else {
+          console.log('Campo de pesquisa vazio.');
+        }
+      });
+    }
+
     // Função para mostrar uma seção e esconder as outras
     function showSection(sectionToShow) {
       // Esconde TODAS as seções possíveis
@@ -1171,6 +1461,9 @@
       contactPage.classList.add('hidden');
       registrationPage.classList.add('hidden');
       loginPage.classList.add('hidden');
+      masterLoginPage.classList.add('hidden'); // Certifica-se de que o master login também está escondido por padrão
+      adminPanelPage.classList.add('hidden');
+
 
       // Mostra a seção desejada
       sectionToShow.classList.remove('hidden');
@@ -1189,12 +1482,6 @@
       console.log('Clicado em "Início" na navegação.');
       showSection(mainProductPage);
     });
-    // Removido o event listener para o logo, pois não é mais um link
-    // homeLinkLogo.addEventListener('click', function(event) {
-    //   event.preventDefault();
-    //   console.log('Clicado no Logo.');
-    //   showSection(mainProductPage);
-    // });
 
     historyLink.addEventListener('click', function(event) {
       event.preventDefault();
@@ -1212,13 +1499,40 @@
       event.preventDefault();
       console.log('Clicado em "Login".');
       showSection(loginPage);
+      // Ao clicar em Login, garante que o formulário de login normal esteja visível e o master login escondido
+      loginForm.classList.remove('hidden');
+      masterLoginForm.classList.add('hidden');
+      toggleMasterLoginLink.textContent = 'Acesso Administrativo'; // Reseta o texto do link
     });
+
+    // Event listener para alternar entre Login de Usuário e Login Master
+    toggleMasterLoginLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Acesso Administrativo" / "Voltar ao Login de Usuário".');
+
+      if (loginForm.classList.contains('hidden')) {
+        // Se o formulário de master login está visível, volta para o login normal
+        loginForm.classList.remove('hidden');
+        masterLoginForm.classList.add('hidden');
+        toggleMasterLoginLink.textContent = 'Acesso Administrativo';
+      } else {
+        // Se o formulário de login normal está visível, mostra o master login
+        loginForm.classList.add('hidden');
+        masterLoginForm.classList.remove('hidden');
+        toggleMasterLoginLink.textContent = 'Voltar ao Login de Usuário';
+      }
+    });
+
 
     // Event listeners para os links de navegação entre as telas de autenticação
     linkToLogin.addEventListener('click', function(event) {
       event.preventDefault();
       console.log('Clicado em "Já tem uma conta? Faça Login".');
       showSection(loginPage);
+      // Garante que o formulário de login normal esteja visível e o master login escondido
+      loginForm.classList.remove('hidden');
+      masterLoginForm.classList.add('hidden');
+      toggleMasterLoginLink.textContent = 'Acesso Administrativo';
     });
 
     linkToRegister.addEventListener('click', function(event) {
@@ -1311,6 +1625,9 @@
         setTimeout(() => {
           showSection(loginPage);
           registrationMessage.style.display = 'none'; // Esconde a mensagem após redirecionar
+          loginForm.classList.remove('hidden'); // Garante que o login normal esteja visível
+          masterLoginForm.classList.add('hidden'); // Garante que o master login esteja escondido
+          toggleMasterLoginLink.textContent = 'Acesso Administrativo'; // Reseta o texto do link
         }, 2000);
       }
 
@@ -1350,10 +1667,69 @@
       }, 5000);
     });
 
+    // Event listener para o envio do formulário de Master Login
+    masterLoginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('master-username').value;
+      const password = document.getElementById('master-password').value;
+
+      // Credenciais hardcoded para o Master Login
+      const masterUser = 'LiraeMaster';
+      const masterPass = 'L!r@eM@st3r&';
+
+      if (username === masterUser && password === masterPass) {
+        masterLoginMessage.textContent = 'Login Master bem-sucedido! Redirecionando para o Painel de Administração...';
+        masterLoginMessage.classList.remove('error');
+        masterLoginMessage.classList.add('success');
+        masterLoginMessage.style.display = 'block';
+        masterLoginForm.reset();
+        setTimeout(() => {
+          showSection(adminPanelPage); // Redireciona para o painel de administração
+          masterLoginMessage.style.display = 'none';
+        }, 2000);
+      } else {
+        masterLoginMessage.textContent = 'Usuário ou senha Master incorretos.';
+        masterLoginMessage.classList.remove('success');
+        masterLoginMessage.classList.add('error');
+        masterLoginMessage.style.display = 'block';
+      }
+
+      setTimeout(() => {
+        masterLoginMessage.style.display = 'none';
+      }, 5000);
+    });
+
+    // Event listeners para os botões do Painel de Administração (apenas para demonstração)
+    addProductBtn.addEventListener('click', function() {
+      adminActionMessage.textContent = 'Funcionalidade "Incluir Produtos" ativada (apenas demonstração).';
+      adminActionMessage.classList.remove('error');
+      adminActionMessage.classList.add('success');
+      adminActionMessage.style.display = 'block';
+      setTimeout(() => { adminActionMessage.style.display = 'none'; }, 3000);
+    });
+
+    alterPriceBtn.addEventListener('click', function() {
+      adminActionMessage.textContent = 'Funcionalidade "Alterar Valor" ativada (apenas demonstração).';
+      adminActionMessage.classList.remove('error');
+      adminActionMessage.classList.add('success');
+      adminActionMessage.style.display = 'block';
+      setTimeout(() => { adminActionMessage.style.display = 'none'; }, 3000);
+    });
+
+    approveUsersBtn.addEventListener('click', function() {
+      adminActionMessage.textContent = 'Funcionalidade "Aprovar Novos Usuários" ativada (apenas demonstração).';
+      adminActionMessage.classList.remove('error');
+      adminActionMessage.classList.add('success');
+      adminActionMessage.style.display = 'block';
+      setTimeout(() => { adminActionMessage.style.display = 'none'; }, 3000);
+    });
+
 
     // Ao carregar a página, garante que a página inicial do produto esteja visível por padrão
     document.addEventListener('DOMContentLoaded', () => {
-      showSection(mainProductPage); // Alterado para mostrar a página principal
+      updateCartDisplay(); // Define a contagem inicial do carrinho como 0
+      showSection(mainProductPage); // Garante que a página principal do produto seja exibida ao carregar
     });
   </script>
 </body>
