@@ -134,12 +134,17 @@
       padding: 30px 20px;
       font-size: 14px;
     }
-    .whatsapp-button {
+    .floating-button {
       position: fixed;
       bottom: 20px;
       right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .floating-button a {
       background-color: #25D366;
-      color: white;
       border-radius: 50%;
       width: 60px;
       height: 60px;
@@ -147,9 +152,11 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      z-index: 1000;
     }
-    .whatsapp-button img {
+    .floating-button a.instagram {
+      background-color: #E1306C;
+    }
+    .floating-button img {
       width: 30px;
       height: 30px;
     }
@@ -216,8 +223,13 @@
     <p>&copy; 2025 Lirae Shoes. Todos os direitos reservados.</p>
   </footer>
 
-  <a class="whatsapp-button" href="https://wa.me/5599999999999" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-  </a>
+  <div class="floating-button">
+    <a href="https://wa.me/5599999999999" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <a class="instagram" href="https://www.instagram.com/liraeshoes?igsh=c2h6eGprb20xNDVx" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
 </body>
 </html>
