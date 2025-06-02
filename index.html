@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto - Lirae Shoes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico para todos os elementos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Playfair Display', serif; /* Define a fonte padrão */
+    }
+    /* Estilos para o corpo da página */
+    body {
+      background-color: #F1EFE7; /* Cor de fundo clara */
+      color: #000; /* Cor do texto principal */
+    }
+    /* Estilos para o cabeçalho */
+    header {
+      background-color: #BC9D71; /* Cor de fundo do cabeçalho */
+      color: #F1EFE7; /* Cor do texto do cabeçalho */
+      padding: 20px 20px;
+      display: flex;
+      justify-content: space-between; /* Espaço entre logo e navegação */
+      align-items: center; /* Alinha itens verticalmente */
+      flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+    }
+    /* Estilos para o contêiner do logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Espaçamento entre a imagem e o texto do logo */
+    }
+    /* Estilos para a imagem do logo */
+    .logo img {
+      height: 40px; /* Altura da imagem do logo */
+    }
+    /* Estilos para o texto do logo */
+    .logo span {
+      font-size: 20px;
+      font-weight: bold;
+      color: #F1EFE7; /* Cor do texto do logo */
+    }
+    /* Adicionado estilo para o link do logo para remover sublinhado */
+    .logo a {
+      text-decoration: none; /* Remove o sublinhado padrão dos links */
+      color: inherit; /* Herda a cor do elemento pai (do .logo) */
+    }
+    /* Estilos para os links de navegação */
+    nav a {
+      color: #F1EFE7; /* Cor dos links de navegação */
+      text-decoration: none; /* Remove o sublinhado dos links */
+      margin: 10px; /* Espaçamento entre os links */
+      font-size: 16px;
+    }
+    /* Estilos para o contêiner principal do produto */
+    .product-container {
+      background-color: #BC9D71; /* Cor de fundo do contêiner do produto */
+      border-radius: 20px; /* Cantos arredondados */
+      padding: 20px;
+      max-width: 1000px; /* Largura máxima */
+      margin: 20px auto; /* Centraliza o contêiner na página */
+      display: flex;
+      flex-direction: column; /* Coluna por padrão (para telas menores) */
+      gap: 20px; /* Espaçamento entre os elementos internos */
+      color: #F1EFE7; /* Cor do texto dentro do contêiner */
+    }
+    /* Media query para telas maiores (a partir de 768px de largura) */
+    @media(min-width: 768px) {
+      .product-container {
+        flex-direction: row; /* Muda para linha em telas maiores */
+      }
+    }
+    /* Estilos para a seção da imagem do produto */
+    .product-image {
+      flex: 1; /* Ocupa o espaço disponível */
+    }
+    /* Estilos para a imagem do produto */
+    .product-image img {
+      width: 100%; /* Ocupa 100% da largura do seu contêiner */
+      border-radius: 15px; /* Cantos arredondados para a imagem */
+    }
+    /* Estilos para a seção de detalhes do produto */
+    .product-details {
+      flex: 1; /* Ocupa o espaço disponível */
+    }
+    /* Estilos para o título do produto */
+    .product-details h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    /* Estilos para a descrição do produto */
+    .product-details p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    /* Estilos para o preço do produto */
+    .product-details .price {
+      font-size: 24px;
+      color: #F1EFE7; /* Cor do preço */
+      margin-bottom: 20px;
+    }
+    /* Estilos para o seletor de tamanho */
+    .product-details select {
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      width: 100%; /* Ocupa 100% da largura do seu contêiner */
+    }
+    /* Estilos para o botão "Adicionar ao Carrinho" */
+    .product-details button {
+      background-color: #000; /* Cor de fundo do botão */
+      color: #F1EFE7; /* Cor do texto do botão */
+      border: none; /* Remove a borda */
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 30px; /* Cantos bem arredondados */
+      cursor: pointer; /* Muda o cursor ao passar por cima */
+      width: 100%; /* Ocupa 100% da largura do seu contêiner */
+    }
+    /* Estilos para a seção de produtos relacionados */
+    .related-products {
+      padding: 40px 20px;
+      background-color: #BC9D71; /* Cor de fundo */
+      color: #F1EFE7; /* Cor do texto */
+    }
+    /* Estilos para o título da seção de produtos relacionados */
+    .related-products h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #F1EFE7;
+      font-size: 24px;
+    }
+    /* Estilos para a grade de produtos relacionados */
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Layout responsivo de grade */
+      gap: 20px; /* Espaçamento entre os itens da grade */
+    }
+    /* Estilos para cada item de produto relacionado */
+    .related-item {
+      background-color: #F1EFE7; /* Cor de fundo do item */
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px; /* Cantos arredondados */
+      color: #000; /* Cor do texto do item */
+    }
+    /* Estilos para as imagens dos produtos relacionados */
+    .related-item img {
+      width: 100%; /* Ocupa 100% da largura do seu contêiner */
+      border-radius: 10px; /* Cantos arredondados para as imagens */
+      margin-bottom: 10px;
+    }
+    /* Estilos para o rodapé */
+    footer {
+      background-color: #BC9D71; /* Cor de fundo do rodapé */
+      color: #F1EFE7; /* Cor do texto do rodapé */
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+    }
+    /* Estilos para o contêiner dos botões flutuantes */
+    .floating-button {
+      position: fixed; /* Posição fixa na tela */
+      bottom: 20px; /* 20px do fundo */
+      right: 20px; /* 20px da direita */
+      display: flex;
+      flex-direction: column; /* Empilha os botões verticalmente */
+      gap: 10px; /* Espaçamento entre os botões */
+      z-index: 1000; /* Garante que os botões fiquem acima de outros elementos */
+    }
+    /* Estilos para os links dos botões flutuantes (WhatsApp) */
+    .floating-button a {
+      background-color: transparent; /* Alterado para transparente */
+      border-radius: 50%; /* Torna o botão redondo */
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para o botão */
+      border: 2px solid #25D366; /* Adicionado contorno para WhatsApp */
+    }
+    /* Estilos específicos para o botão do Instagram */
+    .floating-button a.instagram {
+      background-color: transparent; /* Alterado para transparente */
+      border: 2px solid #E1306C; /* Adicionado contorno para Instagram */
+    }
+    /* Estilos para as imagens dos ícones nos botões flutuantes */
+    .floating-button img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Adição: Estilo para esconder elementos */
+    .hidden {
+      display: none !important; /* Usar !important para garantir que sobrescreva outras regras de display */
+    }
+
+    /* Adição: Estilos para o contêiner da página de coleções (principal) */
+    .collections-container {
+      background-color: #F1EFE7; /* Cor de fundo diferente para distinguir */
+      color: #000;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-radius: 20px;
+      text-align: center; /* Centraliza o texto e a grade */
+    }
+
+    /* Adição: Estilos para o título da página de coleções */
+    .collections-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #BC9D71; /* Cor do título da coleção */
+      font-size: 28px;
+    }
+
+    /* Adição: Estilos para a grade de produtos dentro da página de coleções (agora exibe produtos diretamente) */
+    .collections-container .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Colunas para produtos */
+      gap: 25px; /* Espaçamento entre os produtos */
+    }
+
+    /* Adição: Estilos para cada item de produto dentro da página de coleções */
+    .collections-container .product-item-in-collection {
+      background-color: #BC9D71; /* Cor de fundo dos itens de produto */
+      color: #F1EFE7; /* Cor do texto */
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: flex; /* Adicionado para organizar os elementos internos */
+      flex-direction: column; /* Coluna para os elementos internos */
+      justify-content: space-between; /* Espaço entre os elementos */
+    }
+
+    /* Adição: Efeito hover para os itens de produto dentro das coleções */
+    .collections-container .product-item-in-collection:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Adição: Imagens dos produtos dentro das coleções */
+    .collections-container .product-item-in-collection img {
+      width: 100%;
+      height: 180px; /* Altura fixa para imagens */
+      object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    /* Adição: Título do produto dentro das coleções */
+    .collections-container .product-item-in-collection h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    /* Adição: Preço do produto dentro das coleções */
+    .collections-container .product-item-in-collection .price-display {
+      font-size: 16px;
+      font-weight: bold;
+      color: #F1EFE7;
+      margin-bottom: 10px; /* Espaçamento adicionado */
+    }
+
+    /* Adição: Estilos para o grupo de opções de tamanho */
+    .collections-container .product-item-in-collection .size-option-group {
+        margin-bottom: 10px;
+        text-align: left; /* Alinha o texto à esquerda */
+    }
+
+    /* Adição: Estilos para o seletor de tamanho dentro dos itens de coleção */
+    .collections-container .product-item-in-collection .size-select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #F1EFE7;
+        background-color: #F1EFE7;
+        color: #000;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Adição: Estilos para o grupo de opções de cor */
+    .collections-container .product-item-in-collection .color-option-group {
+        margin-bottom: 15px;
+        text-align: left; /* Alinha o texto à esquerda */
+    }
+
+    /* Adição: Estilos para o contêiner das opções de cor */
+    .collections-container .product-item-in-collection .color-options {
+        display: flex;
+        gap: 8px;
+        margin-top: 5px;
+        justify-content: center; /* Centraliza as bolinhas de cor */
+    }
+
+    /* Adição: Estilos para cada amostra de cor */
+    .collections-container .product-item-in-collection .color-swatch {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent; /* Borda transparente por padrão */
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.2); /* Sombra sutil */
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Adição: Estilos para a amostra de cor selecionada */
+    .collections-container .product-item-in-collection .color-swatch.selected {
+        border-color: #F1EFE7; /* Borda branca para indicar seleção */
+        box-shadow: 0 0 0 3px #000; /* Sombra mais forte para destaque */
+    }
+
+    /* Adição: Estilos para o botão "Adicionar ao Carrinho" dentro dos itens de coleção */
+    .collections-container .product-item-in-collection .add-to-cart-btn {
+        background-color: #000;
+        color: #F1EFE7;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        margin-top: auto; /* Empurra o botão para o final do flex container */
+    }
+
+    .collections-container .product-item-in-collection .add-to-cart-btn:hover {
+        background-color: #333;
+    }
+
+    /* Adição: Estilo para a mensagem de feedback do item adicionado ao carrinho */
+    .collections-container .product-item-in-collection .cart-message-item {
+      text-align: center;
+      padding: 5px;
+      color: #25D366; /* Verde para sucesso */
+      font-weight: bold;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+
+    /* Adição: Estilos para o contêiner da página de história */
+    .history-container {
+      background-color: #F1EFE7; /* Cor de fundo similar à página de coleções */
+      color: #000;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-radius: 20px;
+      text-align: center; /* Centraliza o texto */
+    }
+
+    /* Adição: Estilos para o título da página de história */
+    .history-container h2 {
+      margin-bottom: 20px;
+      color: #BC9D71; /* Cor do título da história */
+      font-size: 28px;
+    }
+
+    /* Adição: Estilos para os parágrafos da página de história */
+    .history-container p {
+      font-size: 18px;
+      line-height: 1.6; /* Espaçamento de linha para melhor leitura */
+      margin-bottom: 15px;
+    }
+
+    /* Adição: Estilos para o contêiner do formulário de contato */
+    .contact-container {
+      background-color: #BC9D71; /* Cor de fundo consistente com o produto */
+      color: #F1EFE7;
+      padding: 40px 20px;
+      max-width: 600px; /* Largura menor para o formulário */
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    /* Adição: Estilos para o título do formulário de contato */
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #F1EFE7;
+      font-size: 28px;
+    }
+
+    /* Adição: Estilos para os grupos de formulário (label + input/textarea) */
+    .form-group {
+      margin-bottom: 20px; /* Espaçamento entre os grupos */
+    }
+
+    /* Adição: Estilos para os labels do formulário */
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* Adição: Estilos para os inputs e textareas do formulário */
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"], /* Incluído o tipo 'tel' */
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #F1EFE7; /* Borda clara */
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #F1EFE7; /* Fundo claro para os campos */
+      color: #000; /* Texto escuro nos campos */
+    }
+
+    /* Adição: Estilos específicos para o textarea */
+    .form-group textarea {
+      resize: vertical; /* Permite redimensionar verticalmente */
+      min-height: 120px; /* Altura mínima */
+    }
+
+    /* Adição: Estilos para o botão de envio do formulário */
+    .contact-container button {
+      background-color: #000; /* Cor de fundo do botão de envio */
+      color: #F1EFE7; /* Cor do texto do botão */
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease; /* Transição suave para o hover */
+    }
+
+    /* Adição: Efeito hover para o botão de envio */
+    .contact-container button:hover {
+      background-color: #333; /* Escurece um pouco no hover */
+    }
+
+    /* Adição: Estilo para a mensagem de sucesso/erro do formulário */
+    .form-message {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none; /* Inicialmente oculto */
+    }
+
+    .form-message.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .form-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    /* Adição: Estilos para o contêiner da página de cadastro */
+    .registration-container {
+      background-color: #F1EFE7; /* Cor de fundo similar à página de coleções */
+      color: #000;
+      padding: 40px 20px;
+      max-width: 600px; /* Largura menor para o formulário */
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    /* Adição: Estilos para o título da página de cadastro */
+    .registration-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #BC9D71;
+      font-size: 28px;
+    }
+
+    /* Adição: Estilos para os grupos de formulário de cadastro */
+    .registration-container .form-group {
+      margin-bottom: 20px;
+    }
+
+    /* Adição: Estilos para os labels do formulário de cadastro */
+    .registration-container .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* Adição: Estilos para os inputs do formulário de cadastro */
+    .registration-container .form-group input[type="text"],
+    .registration-container .form-group input[type="email"],
+    .registration-container .form-group input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #BC9D71; /* Borda com a cor do cabeçalho */
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #FFFFFF; /* Fundo branco para os campos */
+      color: #000;
+    }
+
+    /* Adição: Estilos para o botão de envio do formulário de cadastro */
+    .registration-container button[type="submit"] {
+      background-color: #BC9D71; /* Cor de fundo do botão de envio */
+      color: #F1EFE7; /* Cor do texto do botão */
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Adição: Efeito hover para o botão de envio do formulário de cadastro */
+    .registration-container button[type="submit"]:hover {
+      background-color: #a0815a; /* Escurece um pouco no hover */
+    }
+
+    /* Adição: Estilo para a mensagem de sucesso/erro do formulário de cadastro */
+    .registration-container .form-message {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none; /* Inicialmente oculto */
+    }
+
+    /* Adição: Estilos para o contêiner da página de login */
+    .login-container {
+      background-color: #BC9D71; /* Cor de fundo consistente com o produto */
+      color: #F1EFE7;
+      padding: 40px 20px;
+      max-width: 600px; /* Largura menor para o formulário */
+      margin: 20px auto;
+      border-radius: 20px;
+    }
+
+    /* Adição: Estilos para o título da página de login */
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #F1EFE7;
+      font-size: 28px;
+    }
+
+    /* Adição: Estilos para os grupos de formulário de login */
+    .login-container .form-group {
+      margin-bottom: 20px;
+    }
+
+    /* Adição: Estilos para os labels do formulário de login */
+    .login-container .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* Adição: Estilos para os inputs do formulário de login */
+    .login-container .form-group input[type="email"],
+    .login-container .form-group input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #F1EFE7;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #F1EFE7;
+      color: #000;
+    }
+
+    /* Adição: Estilos para o botão de envio do formulário de login */
+    .login-container button[type="submit"] {
+      background-color: #000;
+      color: #F1EFE7;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Adição: Efeito hover para o botão de envio do formulário de login */
+    .login-container button[type="submit"]:hover {
+      background-color: #333;
+    }
+
+    /* Adição: Estilo para a mensagem de sucesso/erro do formulário de login */
+    .login-container .form-message {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none; /* Inicialmente oculto */
+    }
+
+    /* Estilo para links dentro dos formulários de autenticação */
+    .auth-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #F1EFE7; /* Cor do texto do link */
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .auth-link:hover {
+      color: #000; /* Cor do texto do link no hover */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#home" class="logo" id="home-link-logo">
+      <img src="LOGO 2 PNG - OFF WHITE - TRANSPARENTE.png" alt="Logo Lirae">
+      <span>Lirae Shoes</span>
+    </a>
+    <nav>
+      <a href="#home" id="home-link-nav">Início</a>
+      <a href="#collections" id="collections-link">Coleções</a>
+      <a href="#history" id="history-link">História</a>
+      <a href="#contact" id="contact-link">Contato</a>
+      <a href="#login" id="login-link">Login</a>
+    </nav>
+  </header>
+
+  <section class="product-container" id="main-product-page">
+    <div class="product-image">
+      <img src="https://via.placeholder.com/450x450" alt="Sapato Lirae">
+    </div>
+    <div class="product-details">
+      <h1>Sapato Feminino Lirae</h1>
+      <p>Um sapato feito para mulheres que valorizam conforto e elegância. Com acabamento premium e design exclusivo.</p>
+      <div class="price">R$ 349,00</div>
+      <label for="size">Tamanho:</label>
+      <select id="size">
+        <option>34</option>
+        <option>35</option>
+        <option>36</option>
+        <option>37</option>
+        <option>38</option>
+        <option>39</option>
+      </select>
+      <br>
+      <button>Adicionar ao Carrinho</button>
+    </div>
+  </section>
+
+  <section class="collections-container hidden" id="collections-page">
+    <h2>Todos os Produtos</h2>
+    <div class="products-grid">
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/BC9D71/F1EFE7?text=Sandália+Solar" alt="Sandália Solar">
+        <h3>Sandália Solar</h3>
+        <p class="price-display">R$ 189,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37" selected>37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+                <div class="color-swatch" style="background-color: #000;" data-color="#000"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/000/F1EFE7?text=Rasteirinha+Brisa" alt="Rasteirinha Brisa">
+        <h3>Rasteirinha Brisa</h3>
+        <p class="price-display">R$ 129,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36" selected>36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #000;" data-color="#000"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/F1EFE7/BC9D71?text=Mule+Verão" alt="Mule Verão">
+        <h3>Mule Verão</h3>
+        <p class="price-display">R$ 219,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38" selected>38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+                <div class="color-swatch" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/BC9D71/000?text=Espadrille+Praia" alt="Espadrille Praia">
+        <h3>Espadrille Praia</h3>
+        <p class="price-display">R$ 249,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39" selected>39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/000/BC9D71?text=Bota+Couro+Longa" alt="Bota Couro Longa">
+        <h3>Bota Couro Longa</h3>
+        <p class="price-display">R$ 499,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37" selected>37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #000;" data-color="#000"></div>
+                <div class="color-swatch" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/BC9D71/000?text=Ankle+Boot" alt="Ankle Boot">
+        <h3>Ankle Boot</h3>
+        <p class="price-display">R$ 389,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38" selected>38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+                <div class="color-swatch" style="background-color: #000;" data-color="#000"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/F1EFE7/BC9D71?text=Scarpin+Veludo" alt="Scarpin Veludo">
+        <h3>Scarpin Veludo</h3>
+        <p class="price-display">R$ 329,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39" selected>39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+                <div class="color-swatch" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/F1EFE7/000?text=Scarpin+Preto" alt="Scarpin Preto">
+        <h3>Scarpin Preto</h3>
+        <p class="price-display">R$ 299,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37" selected>37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #000;" data-color="#000"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/BC9D71/F1EFE7?text=Peep+Toe+Nude" alt="Peep Toe Nude">
+        <h3>Peep Toe Nude</h3>
+        <p class="price-display">R$ 279,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38" selected>38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/000/BC9D71?text=Sapatilha+Confort" alt="Sapatilha Confort">
+        <h3>Sapatilha Confort</h3>
+        <p class="price-display">R$ 199,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39" selected>39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #000;" data-color="#000"></div>
+                <div class="color-swatch" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/F1EFE7/BC9D71?text=Scarpin+Renda" alt="Scarpin Renda">
+        <h3>Scarpin Renda</h3>
+        <p class="price-display">R$ 450,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37" selected>37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+                <div class="color-swatch" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/BC9D71/F1EFE7?text=Sandália+Pedrarias" alt="Sandália Pedrarias">
+        <h3>Sandália Pedrarias</h3>
+        <p class="price-display">R$ 520,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38" selected>38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="product-item-in-collection">
+        <img src="https://placehold.co/250x180/000/F1EFE7?text=Sapato+Salto+Fino" alt="Sapato Salto Fino">
+        <h3>Sapato Salto Fino</h3>
+        <p class="price-display">R$ 480,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37" selected>37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #000;" data-color="#000"></div>
+                <div class="color-swatch" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="history-container hidden" id="history-page">
+    <h2>Nossa História</h2>
+    <p>A Lirae Shoes nasceu da paixão por calçados femininos que unem elegância, conforto e qualidade. Fundada em 2020, nossa marca tem como missão oferecer sapatos que empoderam mulheres, permitindo que elas caminhem com confiança e estilo em cada passo.</p>
+    <p>Desde o início, buscamos os melhores materiais e técnicas de produção, combinando o artesanato tradicional com as tendências mais modernas do design. Cada par de Lirae Shoes é cuidadosamente elaborado, pensando nos detalhes que fazem a diferença.</p>
+    <p>Nossa jornada é marcada pela dedicação em criar peças que não apenas complementam um look, mas que contam uma história de sofisticação e bem-estar. Acreditamos que um bom sapato pode transformar o dia de uma mulher, e é essa crença que nos impulsiona a inovar e aprimorar constantemente nossas coleções.</p>
+    <p>Obrigado por fazer parte da nossa história. Continue caminhando conosco!</p>
+  </section>
+
+  <section class="contact-container hidden" id="contact-page">
+    <h2>Fale Conosco</h2>
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">Assunto:</label>
+        <input type="text" id="subject" name="subject" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Mensagem:</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">Enviar Mensagem</button>
+      <div id="form-message" class="form-message"></div>
+    </form>
+  </section>
+
+  <section class="registration-container hidden" id="registration-page">
+    <h2>Crie sua Conta</h2>
+    <form id="registration-form">
+      <div class="form-group">
+        <label for="reg-name">Nome:</label>
+        <input type="text" id="reg-name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="reg-email">E-mail:</label>
+        <input type="email" id="reg-email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Senha:</label>
+        <input type="password" id="reg-password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="reg-confirm-password">Confirmar Senha:</label>
+        <input type="password" id="reg-confirm-password" name="confirm-password" required>
+      </div>
+      <button type="submit">Cadastrar</button>
+      <div id="registration-message" class="form-message"></div>
+    </form>
+    <a href="#login" class="auth-link" id="link-to-login">Já tem uma conta? Faça Login</a> </section>
+
+  <section class="login-container hidden" id="login-page">
+    <h2>Faça Login</h2>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="login-email">E-mail:</label>
+        <input type="email" id="login-email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Senha:</label>
+        <input type="password" id="login-password" name="password" required>
+      </div>
+      <button type="submit">Entrar</button>
+      <div id="login-message" class="form-message"></div>
+    </form>
+    <a href="#register" class="auth-link" id="link-to-register">Não tem uma conta? Cadastre-se</a> </section>
+
+  <section class="related-products">
+    <h2>Você também pode gostar</h2>
+    <div class="related-grid">
+      <div class="related-item">
+        <img src="https://via.placeholder.com/200x200" alt="Produto 1">
+        <p>Sapato Clássico</p>
+        <p>R$ 299,00</p>
+      </div>
+      <div class="related-item">
+        <img src="https://via.placeholder.com/200x200" alt="Produto 2">
+        <p>Sapato Casual</p>
+        <p>R$ 279,00</p>
+      </div>
+      <div class="related-item">
+        <img src="https://via.placeholder.co/200x200" alt="Produto 3">
+        <p>Sapato Social</p>
+        <p>R$ 319,00</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Lirae Shoes. Todos os direitos reservados.</p>
+  </footer>
+
+  <div class="floating-button">
+    <a href="https://wa.me/5599999999999" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <a class="instagram" href="https://www.instagram.com/liraeshoes?igsh=c2h6eGprb20xNDVx" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
+
+  <script>
+    // Função para adicionar ao carrinho
+    function addToCart(productElement) {
+      const productName = productElement.querySelector('h3').textContent;
+      const productPrice = productElement.querySelector('.price-display').textContent;
+      const selectedSize = productElement.querySelector('.size-select').value;
+      const selectedColorElement = productElement.querySelector('.color-swatch.selected');
+      const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Não especificado';
+
+      console.log(`Adicionado ao carrinho: ${productName}, Tamanho: ${selectedSize}, Cor: ${selectedColor}, Preço: ${productPrice}`);
+
+      const messageElement = productElement.querySelector('.cart-message-item');
+      if (messageElement) {
+        messageElement.classList.remove('hidden');
+        setTimeout(() => {
+          messageElement.classList.add('hidden');
+        }, 3000);
+      }
+    }
+
+    // Referências aos elementos das seções principais
+    const mainProductPage = document.getElementById('main-product-page');
+    const collectionsPage = document.getElementById('collections-page');
+    const historyPage = document.getElementById('history-page');
+    const contactPage = document.getElementById('contact-page');
+    const registrationPage = document.getElementById('registration-page');
+    const loginPage = document.getElementById('login-page');
+
+    // Referências aos links de navegação do cabeçalho
+    const collectionsLink = document.getElementById('collections-link');
+    const homeLinkNav = document.getElementById('home-link-nav');
+    const homeLinkLogo = document.getElementById('home-link-logo');
+    const historyLink = document.getElementById('history-link');
+    const contactLink = document.getElementById('contact-link');
+    // Removido a referência ao link de cadastro do JavaScript
+    // const registerLink = document.getElementById('register-link');
+    const loginLink = document.getElementById('login-link');
+
+    // Referências aos links de navegação entre as telas de autenticação
+    const linkToLogin = document.getElementById('link-to-login');
+    const linkToRegister = document.getElementById('link-to-register');
+
+    // Referência ao formulário de contato e à mensagem de feedback
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    // Referência ao formulário de cadastro e à mensagem de feedback
+    const registrationForm = document.getElementById('registration-form');
+    const registrationMessage = document.getElementById('registration-message');
+
+    // Referência ao formulário de login e à mensagem de feedback
+    const loginForm = document.getElementById('login-form');
+    const loginMessage = document.getElementById('login-message');
+
+    // Função para mostrar uma seção e esconder as outras
+    function showSection(sectionToShow) {
+      // Esconde TODAS as seções possíveis
+      mainProductPage.classList.add('hidden');
+      collectionsPage.classList.add('hidden');
+      historyPage.classList.add('hidden');
+      contactPage.classList.add('hidden');
+      registrationPage.classList.add('hidden');
+      loginPage.classList.add('hidden');
+
+      // Mostra a seção desejada
+      sectionToShow.classList.remove('hidden');
+      console.log(`Seção exibida: ${sectionToShow.id}`); // Log para depuração
+    }
+
+    // Event listeners para os links de navegação do cabeçalho
+    collectionsLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Coleções" na navegação.');
+      showSection(collectionsPage);
+    });
+
+    homeLinkNav.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Início" na navegação.');
+      showSection(mainProductPage);
+    });
+    homeLinkLogo.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado no Logo.');
+      showSection(mainProductPage);
+    });
+
+    historyLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "História".');
+      showSection(historyPage);
+    });
+
+    contactLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Contato".');
+      showSection(contactPage);
+    });
+
+    // Removido o event listener para o link de cadastro do menu
+    // registerLink.addEventListener('click', function(event) {
+    //   event.preventDefault();
+    //   console.log('Clicado em "Cadastro".');
+    //   showSection(registrationPage);
+    // });
+
+    loginLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Login".');
+      showSection(loginPage);
+    });
+
+    // Event listeners para os links de navegação entre as telas de autenticação
+    linkToLogin.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Já tem uma conta? Faça Login".');
+      showSection(loginPage);
+    });
+
+    linkToRegister.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('Clicado em "Não tem uma conta? Cadastre-se".');
+      showSection(registrationPage);
+    });
+
+    // Configura os event listeners para os botões "Adicionar ao Carrinho" em cada produto na página de coleções
+    document.querySelectorAll('.collections-container .add-to-cart-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const productItem = this.closest('.product-item-in-collection');
+        if (productItem) {
+          addToCart(productItem);
+        }
+      });
+    });
+
+    // Configura os event listeners para as amostras de cor em cada produto na página de coleções
+    document.querySelectorAll('.collections-container .color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', function() {
+        const colorOptionsGroup = this.closest('.color-options');
+        const productItem = this.closest('.product-item-in-collection');
+        const productImage = productItem.querySelector('img');
+
+        if (colorOptionsGroup && productImage) {
+          colorOptionsGroup.querySelectorAll('.color-swatch').forEach(s => {
+            s.classList.remove('selected');
+          });
+          this.classList.add('selected');
+
+          const selectedColor = this.dataset.color.substring(1);
+          const productNameText = productImage.alt.replace(/\s/g, '+');
+          const textColor = (selectedColor === '000' || selectedColor.toLowerCase() === 'bc9d71') ? 'F1EFE7' : '000';
+
+          productImage.src = `https://placehold.co/250x180/${selectedColor}/${textColor}?text=${productNameText}`;
+          console.log('Cor selecionada:', this.dataset.color, 'Nova imagem:', productImage.src);
+        }
+      });
+    });
+
+    // Event listener para o envio do formulário de contato
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      console.log('Dados do formulário:', { name, email, phone, subject, message });
+
+      formMessage.textContent = 'Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.';
+      formMessage.classList.remove('error');
+      formMessage.classList.add('success');
+      formMessage.style.display = 'block';
+
+      contactForm.reset();
+
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+      }, 5000);
+    });
+
+    // Event listener para o envio do formulário de cadastro
+    registrationForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const password = document.getElementById('reg-password').value;
+      const confirmPassword = document.getElementById('reg-confirm-password').value;
+
+      console.log('Dados do formulário de cadastro:', { name, email, password, confirmPassword });
+
+      if (password !== confirmPassword) {
+        registrationMessage.textContent = 'As senhas não coincidem!';
+        registrationMessage.classList.remove('success');
+        registrationMessage.classList.add('error');
+        registrationMessage.style.display = 'block';
+      } else {
+        registrationMessage.textContent = 'Cadastro realizado com sucesso! Redirecionando para o Login...';
+        registrationMessage.classList.remove('error');
+        registrationMessage.classList.add('success');
+        registrationMessage.style.display = 'block';
+        registrationForm.reset();
+
+        // Redireciona para a página de login após o cadastro bem-sucedido
+        setTimeout(() => {
+          showSection(loginPage);
+          registrationMessage.style.display = 'none'; // Esconde a mensagem após redirecionar
+        }, 2000);
+      }
+
+      setTimeout(() => {
+        registrationMessage.style.display = 'none';
+      }, 5000);
+    });
+
+    // Event listener para o envio do formulário de login
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      console.log('Dados do formulário de login:', { email, password });
+
+      // Simulação de login
+      if (email === 'teste@email.com' && password === 'senha123') {
+        loginMessage.textContent = 'Login bem-sucedido! Bem-vindo(a)!';
+        loginMessage.classList.remove('error');
+        loginMessage.classList.add('success');
+        loginMessage.style.display = 'block';
+        loginForm.reset();
+        setTimeout(() => {
+          showSection(mainProductPage);
+        }, 2000);
+      } else {
+        loginMessage.textContent = 'E-mail ou senha incorretos.';
+        loginMessage.classList.remove('success');
+        loginMessage.classList.add('error');
+        loginMessage.style.display = 'block';
+      }
+
+      setTimeout(() => {
+        loginMessage.style.display = 'none';
+      }, 5000);
+    });
+
+
+    // Ao carregar a página, garante que a página de login esteja visível por padrão
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection(loginPage);
+    });
+  </script>
+</body>
+</html>
