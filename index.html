@@ -817,6 +817,132 @@
     .admin-panel-container .admin-option-button:hover {
       background-color: #a0815a;
     }
+
+    /* Novos estilos para a seção de produtos em destaque */
+    .featured-products-section {
+      background-color: #F1EFE7; /* Cor de fundo clara para a seção */
+      color: #000;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .featured-products-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #BC9D71;
+      font-size: 28px;
+    }
+
+    .featured-products-section .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .featured-products-section .featured-item {
+      background-color: #BC9D71;
+      color: #F1EFE7;
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .featured-products-section .featured-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .featured-products-section .featured-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .featured-products-section .featured-item h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .featured-products-section .featured-item .price-display {
+      font-size: 16px;
+      font-weight: bold;
+      color: #F1EFE7;
+      margin-bottom: 10px;
+    }
+
+    .featured-products-section .featured-item .size-option-group,
+    .featured-products-section .featured-item .color-option-group {
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .featured-products-section .featured-item .size-select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #F1EFE7;
+        background-color: #F1EFE7;
+        color: #000;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .featured-products-section .featured-item .color-options {
+        display: flex;
+        gap: 8px;
+        margin-top: 5px;
+        justify-content: center;
+    }
+
+    .featured-products-section .featured-item .color-swatch {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .featured-products-section .featured-item .color-swatch.selected {
+        border-color: #F1EFE7;
+        box-shadow: 0 0 0 3px #000;
+    }
+
+    .featured-products-section .featured-item .add-to-cart-btn {
+        background-color: #000;
+        color: #F1EFE7;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        margin-top: auto;
+    }
+
+    .featured-products-section .featured-item .add-to-cart-btn:hover {
+        background-color: #333;
+    }
+
+    .featured-products-section .featured-item .cart-message-item {
+      text-align: center;
+      padding: 5px;
+      color: #25D366;
+      font-weight: bold;
+      font-size: 12px;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
@@ -874,6 +1000,89 @@
       </select>
       <br>
       <button>Adicionar ao Carrinho</button>
+    </div>
+  </section>
+
+  <section class="featured-products-section" id="featured-products-page">
+    <h2>Produtos em Destaque</h2>
+    <div class="featured-grid">
+      <div class="featured-item">
+        <img src="https://placehold.co/250x180/BC9D71/F1EFE7?text=Sapato+Elegance" alt="Sapato Elegance">
+        <h3>Sapato Elegance</h3>
+        <p class="price-display">R$ 399,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37" selected>37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+                <div class="color-swatch" style="background-color: #000;" data-color="#000"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="featured-item">
+        <img src="https://placehold.co/250x180/000/F1EFE7?text=Bota+Chic" alt="Bota Chic">
+        <h3>Bota Chic</h3>
+        <p class="price-display">R$ 549,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38" selected>38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #000;" data-color="#000"></div>
+                <div class="color-swatch" style="background-color: #BC9D71;" data-color="#BC9D71"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
+
+      <div class="featured-item">
+        <img src="https://placehold.co/250x180/F1EFE7/BC9D71?text=Sandália+Glamour" alt="Sandália Glamour">
+        <h3>Sandália Glamour</h3>
+        <p class="price-display">R$ 289,00</p>
+        <div class="size-option-group">
+            <label>Tamanho:</label>
+            <select class="size-select">
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36" selected>36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+            </select>
+        </div>
+        <div class="color-option-group">
+            <label>Cor:</label>
+            <div class="color-options">
+                <div class="color-swatch selected" style="background-color: #F1EFE7;" data-color="#F1EFE7"></div>
+                <div class="color-swatch" style="background-color: #000;" data-color="#000"></div>
+            </div>
+        </div>
+        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+        <div class="cart-message-item hidden">Produto adicionado!</div>
+      </div>
     </div>
   </section>
 
@@ -1367,9 +1576,19 @@
 
     // Função para adicionar ao carrinho
     function addToCart(productElement) {
-      const productName = productElement.querySelector('h3').textContent;
-      const productPrice = productElement.querySelector('.price-display').textContent;
-      const selectedSize = productElement.querySelector('.size-select').value;
+      // Tenta encontrar o nome do produto, se existir
+      const productNameElement = productElement.querySelector('h3');
+      const productName = productNameElement ? productNameElement.textContent : 'Produto Desconhecido';
+
+      // Tenta encontrar o preço do produto, se existir
+      const productPriceElement = productElement.querySelector('.price-display');
+      const productPrice = productPriceElement ? productPriceElement.textContent : 'Preço Desconhecido';
+
+      // Tenta encontrar o tamanho selecionado, se existir
+      const selectedSizeElement = productElement.querySelector('.size-select');
+      const selectedSize = selectedSizeElement ? selectedSizeElement.value : 'Não especificado';
+
+      // Tenta encontrar a cor selecionada, se existir
       const selectedColorElement = productElement.querySelector('.color-swatch.selected');
       const selectedColor = selectedColorElement ? selectedColorElement.dataset.color : 'Não especificado';
 
@@ -1396,6 +1615,7 @@
     const loginPage = document.getElementById('login-page');
     const masterLoginPage = document.getElementById('master-login-page'); // Mantém a referência para a seção master login
     const adminPanelPage = document.getElementById('admin-panel-page');
+    const featuredProductsPage = document.getElementById('featured-products-page'); // Nova referência para a seção de destaque
 
 
     // Referências aos links de navegação do cabeçalho
@@ -1463,10 +1683,17 @@
       loginPage.classList.add('hidden');
       masterLoginPage.classList.add('hidden'); // Certifica-se de que o master login também está escondido por padrão
       adminPanelPage.classList.add('hidden');
+      featuredProductsPage.classList.add('hidden'); // Esconde a seção de destaque por padrão
 
 
       // Mostra a seção desejada
       sectionToShow.classList.remove('hidden');
+
+      // Se a seção principal do produto for exibida, também mostra a seção de produtos em destaque
+      if (sectionToShow === mainProductPage) {
+        featuredProductsPage.classList.remove('hidden');
+      }
+
       console.log(`Seção exibida: ${sectionToShow.id}`); // Log para depuração
     }
 
@@ -1556,6 +1783,39 @@
       swatch.addEventListener('click', function() {
         const colorOptionsGroup = this.closest('.color-options');
         const productItem = this.closest('.product-item-in-collection');
+        const productImage = productItem.querySelector('img');
+
+        if (colorOptionsGroup && productImage) {
+          colorOptionsGroup.querySelectorAll('.color-swatch').forEach(s => {
+            s.classList.remove('selected');
+          });
+          this.classList.add('selected');
+
+          const selectedColor = this.dataset.color.substring(1);
+          const productNameText = productImage.alt.replace(/\s/g, '+');
+          const textColor = (selectedColor === '000' || selectedColor.toLowerCase() === 'bc9d71') ? 'F1EFE7' : '000';
+
+          productImage.src = `https://placehold.co/250x180/${selectedColor}/${textColor}?text=${productNameText}`;
+          console.log('Cor selecionada:', this.dataset.color, 'Nova imagem:', productImage.src);
+        }
+      });
+    });
+
+    // Configura os event listeners para os botões "Adicionar ao Carrinho" em cada produto na seção de destaque
+    document.querySelectorAll('.featured-products-section .add-to-cart-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const productItem = this.closest('.featured-item');
+        if (productItem) {
+          addToCart(productItem);
+        }
+      });
+    });
+
+    // Configura os event listeners para as amostras de cor em cada produto na seção de destaque
+    document.querySelectorAll('.featured-products-section .color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', function() {
+        const colorOptionsGroup = this.closest('.color-options');
+        const productItem = this.closest('.featured-item');
         const productImage = productItem.querySelector('img');
 
         if (colorOptionsGroup && productImage) {
